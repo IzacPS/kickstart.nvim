@@ -211,6 +211,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- local id = 
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--   desc = 'Reload file on save',
+--   group = vim.api.nvim_create_augroup("reload-file-on-save", {clear = true}),
+--   pattern = {'*.zig'},
+--   command = 'edit'
+-- })
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -604,7 +612,7 @@ require('lazy').setup({
         zls = {},
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -665,6 +673,9 @@ require('lazy').setup({
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
+    config = function()
+
+    end,
     keys = {
       {
         '<leader>f',
@@ -683,7 +694,7 @@ require('lazy').setup({
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         return {
-          timeout_ms = 500,
+          timeout_ms = 50,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
